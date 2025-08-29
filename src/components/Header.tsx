@@ -1,183 +1,134 @@
-'use client';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { Button } from './ui/button';
+import logoIcon from 'figma:asset/0c8ceb6676ddd473bdde7927040c5355917237e9.png';
 
-import * as React from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  useScrollTrigger,
-  Slide,
-  useTheme,
-  useMediaQuery,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
+export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-interface HideOnScrollProps {
-  children: React.ReactElement;
-}
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-function HideOnScroll({ children }: HideOnScrollProps) {
-  const trigger = useScrollTrigger();
+  const menuItems = [
+    { name: 'DOTSとは', id: 'about', type: 'scroll' },
+    { name: 'メソッド', id: 'method', type: 'scroll' },
+    { name: '料金プラン', id: 'pricing', type: 'scroll' },
+    { name: 'コーチスタッフ紹介', id: 'coaches', type: 'scroll' },
+    { name: 'よくある質問', id: 'faq', type: 'scroll' },
+    { name: 'コーチ求人', id: 'coach-recruitment', type: 'route', path: '/coach-recruitment' },
+    { name: 'スポンサー提携先', id: 'sponsors', type: 'route', path: '/sponsor' },
+    { name: 'お問い合わせ', id: 'contact', type: 'scroll' }
+  ];
 
-  return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      {children}
-    </Slide>
-  );
-}
-
-const menuItems = [
-  { label: 'サービス紹介', href: '#services' },
-  { label: 'DOTS概念', href: '#concept' },
-  { label: '料金プラン', href: '#pricing' },
-  { label: 'コーチ紹介', href: '#coaches' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'お問い合わせ', href: '#contact' },
-];
-
-export default function Header() {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const handleMenuClick = (href: string) => {
-    setMobileOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleMenuClick = (item: any) => {
+    if (item.type === 'route') {
+      // Route navigation
+      navigate(item.path);
+      setIsMenuOpen(false);
+    } else {
+      // Scroll navigation
+      if (location.pathname !== '/') {
+        // If not on home page, navigate to home first, then scroll
+        navigate('/');
+        setTimeout(() => {
+          scrollToSection(item.id);
+        }, 100);
+      } else {
+        scrollToSection(item.id);
+      }
     }
   };
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+    }
+  };
+
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
   return (
-    <>
-      <HideOnScroll>
-        <AppBar position="fixed" sx={{ zIndex: 1201 }}>
-          <Toolbar sx={{ justifyContent: 'space-between', py: 1 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <SportsSoccerIcon sx={{ fontSize: 32, color: 'primary.main' }} />
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: '24px',
-                  color: 'primary.main',
-                  letterSpacing: '0.1em',
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-lg' 
+        : 'bg-white'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div 
+            className="flex items-center space-x-3 cursor-pointer"
+            onClick={handleLogoClick}
+          >
+            <div className="w-10 h-10 relative bg-white rounded-lg overflow-hidden">
+              <img 
+                src={logoIcon} 
+                alt="DOTS Logo" 
+                className="w-full h-full object-contain drop-shadow-lg"
+                style={{
+                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
+                  background: 'transparent'
                 }}
-              >
-                DOTS
-              </Typography>
-            </Box>
+              />
+            </div>
+            <span className="text-xl font-semibold bg-gradient-to-r from-blue-500 via-cyan-500 to-green-500 bg-clip-text text-transparent">
+              DOTS
+            </span>
+          </div>
 
-            {!isMobile ? (
-              <Box sx={{ display: 'flex', gap: 3 }}>
-                {menuItems.map((item) => (
-                  <Button
-                    key={item.label}
-                    onClick={() => handleMenuClick(item.href)}
-                    sx={{
-                      color: 'text.primary',
-                      fontWeight: 400,
-                      fontSize: '14px',
-                      '&:hover': {
-                        color: 'secondary.main',
-                        backgroundColor: 'transparent',
-                      },
-                    }}
-                  >
-                    {item.label}
-                  </Button>
-                ))}
-              </Box>
-            ) : (
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="end"
-                onClick={handleDrawerToggle}
-                sx={{ color: 'primary.main' }}
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-6">
+            {menuItems.map((item, index) => (
+              <button 
+                key={index}
+                onClick={() => handleMenuClick(item)}
+                className="relative text-sm font-medium text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-blue-500 hover:via-cyan-500 hover:to-green-500 hover:bg-clip-text transition-all duration-300 ease-in-out py-2 px-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:via-cyan-50 hover:to-green-50 group"
               >
-                <MenuIcon />
-              </IconButton>
-            )}
-          </Toolbar>
-        </AppBar>
-      </HideOnScroll>
-
-      <Drawer
-        variant="temporary"
-        anchor="right"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
-        sx={{
-          display: { xs: 'block', md: 'none' },
-          '& .MuiDrawer-paper': {
-            boxSizing: 'border-box',
-            width: '100%',
-            backgroundColor: 'background.default',
-          },
-        }}
-      >
-        <Box sx={{ p: 2 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <SportsSoccerIcon sx={{ fontSize: 32, color: 'primary.main' }} />
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: '24px',
-                  color: 'primary.main',
-                  letterSpacing: '0.1em',
-                }}
-              >
-                DOTS
-              </Typography>
-            </Box>
-            <IconButton onClick={handleDrawerToggle} sx={{ color: 'text.secondary' }}>
-              <CloseIcon />
-            </IconButton>
-          </Box>
-          <List>
-            {menuItems.map((item) => (
-              <ListItem key={item.label} disablePadding>
-                <ListItemButton
-                  onClick={() => handleMenuClick(item.href)}
-                  sx={{
-                    py: 2,
-                    borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
-                  }}
-                >
-                  <ListItemText
-                    primary={item.label}
-                    primaryTypographyProps={{
-                      fontSize: '17px',
-                      fontWeight: 400,
-                    }}
-                  />
-                </ListItemButton>
-              </ListItem>
+                {item.name}
+                <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 via-cyan-500 to-green-500 group-hover:w-full group-hover:left-0 transition-all duration-300 ease-out rounded-full"></span>
+              </button>
             ))}
-          </List>
-        </Box>
-      </Drawer>
-    </>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden p-2 text-gray-700 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-all duration-300"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden py-4 border-t border-gray-200/50 bg-white/95 backdrop-blur-xl">
+            <nav className="flex flex-col space-y-2">
+              {menuItems.map((item, index) => (
+                <button 
+                  key={index}
+                  onClick={() => handleMenuClick(item)}
+                  className="text-left text-gray-700 hover:text-transparent hover:bg-gradient-to-r hover:from-blue-500 hover:via-cyan-500 hover:to-green-500 hover:bg-clip-text font-medium py-3 px-4 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:via-cyan-50 hover:to-green-50 transition-all duration-300"
+                >
+                  {item.name}
+                </button>
+              ))}
+            </nav>
+          </div>
+        )}
+      </div>
+    </header>
   );
 }
