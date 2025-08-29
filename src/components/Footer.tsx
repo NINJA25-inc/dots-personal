@@ -1,176 +1,154 @@
-'use client';
+import { ExternalLink, Shield, FileText, Building, ArrowUp, Mail } from 'lucide-react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
-import {
-  Box,
-  Container,
-  Grid,
-  Typography,
-  Link,
-  Divider,
-  Stack,
-} from '@mui/material';
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
+export function Footer() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const footerLinks = [
+    {
+      title: "お問い合わせ",
+      links: [
+        { name: "LINE公式アカウント", href: "https://lin.ee/YL3zCoD", external: true },
+        { name: "メール", href: "mailto:info.dots.personal@gmail.com", external: true, icon: Mail }
+      ]
+    },
+    {
+      title: "法的情報",
+      links: [
+        { name: "プライバシーポリシー", href: "/privacy-policy", icon: Shield },
+        { name: "利用規約", href: "/terms-of-service", icon: FileText },
+        { name: "特定商取引法に基づく表記", href: "/commercial-transaction", icon: FileText }
+      ]
+    },
+    {
+      title: "会社情報",
+      links: [
+        { name: "会社概要", href: "/company-info", icon: Building },
+        { name: "コーチ求人", href: "/coach-recruitment", icon: FileText }
+      ]
+    }
+  ];
 
-const footerSections = [
-  {
-    title: 'サービス',
-    links: [
-      { label: 'サービス紹介', href: '#services' },
-      { label: 'DOTS概念', href: '#concept' },
-      { label: '料金プラン', href: '#pricing' },
-    ],
-  },
-  {
-    title: 'サポート',
-    links: [
-      { label: 'FAQ', href: '#faq' },
-      { label: 'お問い合わせ', href: '#contact' },
-      { label: 'コーチ紹介', href: '#coaches' },
-    ],
-  },
-  {
-    title: '会社情報',
-    links: [
-      { label: '運営会社情報', href: '#company' },
-      { label: '利用規約', href: '#terms' },
-      { label: '特定商取引法表記', href: '#legal' },
-    ],
-  },
-];
-
-export default function Footer() {
-  const handleLinkClick = (href: string) => {
-    if (href.startsWith('#')) {
-      const element = document.querySelector(href);
+  const scrollToSection = (id: string) => {
+    const targetId = id.replace('#', '');
+    
+    if (location.pathname !== '/') {
+      // If not on home page, navigate to home first, then scroll
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(targetId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handlePageNavigation = (href: string) => {
+    navigate(href);
+    // Scroll to top after navigation
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+
+  // Scroll to top when location changes (for any route navigation)
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
+
   return (
-    <Box
-      component="footer"
-      sx={{
-        backgroundColor: 'background.paper',
-        borderTop: '1px solid rgba(0, 0, 0, 0.08)',
-        pt: 6,
-        pb: 4,
-        mt: 'auto',
-      }}
-    >
-      <Container maxWidth="lg">
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={3}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-              <SportsSoccerIcon sx={{ fontSize: 32, color: 'primary.main' }} />
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: 700,
-                  fontSize: '24px',
-                  color: 'primary.main',
-                  letterSpacing: '0.1em',
-                }}
-              >
-                DOTS
-              </Typography>
-            </Box>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              次世代のサッカースクール
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              技術と創造性を育む
-            </Typography>
-          </Grid>
-
-          {footerSections.map((section) => (
-            <Grid item xs={6} md={3} key={section.title}>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  fontWeight: 600,
-                  color: 'text.primary',
-                  mb: 2,
-                  fontSize: '14px',
-                }}
-              >
-                {section.title}
-              </Typography>
-              <Stack spacing={1.5}>
-                {section.links.map((link) => (
-                  <Link
-                    key={link.label}
-                    component="button"
-                    variant="body2"
-                    onClick={() => handleLinkClick(link.href)}
-                    sx={{
-                      color: 'text.secondary',
-                      textDecoration: 'none',
-                      fontSize: '14px',
-                      textAlign: 'left',
-                      transition: 'color 0.2s',
-                      '&:hover': {
-                        color: 'secondary.main',
-                      },
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </Stack>
-            </Grid>
+    <footer id="contact" className="bg-black text-white py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Footer Links */}
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {footerLinks.map((section, index) => (
+            <div key={index}>
+              <h3 className="font-semibold text-lg mb-4 text-white">{section.title}</h3>
+              <ul className="space-y-3">
+                {section.links.map((link, linkIndex) => {
+                  const IconComponent = link.icon;
+                  return (
+                    <li key={linkIndex}>
+                      {link.external ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-300 hover:text-white transition-colors duration-300 inline-flex items-center"
+                        >
+                          {IconComponent && <IconComponent className="w-4 h-4 mr-2" />}
+                          {link.name}
+                          <ExternalLink className="w-3 h-3 ml-1" />
+                        </a>
+                      ) : link.scroll ? (
+                        <button
+                          onClick={() => scrollToSection(link.href)}
+                          className="text-gray-300 hover:text-white transition-colors duration-300 text-left inline-flex items-center"
+                        >
+                          {IconComponent && <IconComponent className="w-4 h-4 mr-2" />}
+                          {link.name}
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handlePageNavigation(link.href)}
+                          className="text-gray-300 hover:text-white transition-colors duration-300 text-left inline-flex items-center"
+                        >
+                          {IconComponent && <IconComponent className="w-4 h-4 mr-2" />}
+                          {link.name}
+                        </button>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           ))}
-        </Grid>
+        </div>
 
-        <Divider sx={{ my: 4, borderColor: 'rgba(0, 0, 0, 0.08)' }} />
+        {/* Company Info */}
+        <div className="border-t border-gray-800 pt-8">
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-4">
+              <span className="text-2xl font-semibold text-white mr-2">DOTS</span>
+              <span className="text-gray-300">サッカーパーソナル</span>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto">
+              Dream・Opportunity・Training・Success<br />
+              選手一人ひとりの可能性を最大限に引き出す<br />
+              次世代のサッカー育成プログラム
+            </p>
+          </div>
+        </div>
 
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', sm: 'row' },
-            justifyContent: 'space-between',
-            alignItems: { xs: 'center', sm: 'flex-start' },
-            gap: 2,
-          }}
-        >
-          <Typography variant="body2" color="text.secondary" sx={{ fontSize: '12px' }}>
-            © 2024 DOTS Soccer School. All rights reserved.
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 3 }}>
-            <Link
-              component="button"
-              variant="body2"
-              onClick={() => handleLinkClick('#privacy')}
-              sx={{
-                color: 'text.secondary',
-                textDecoration: 'none',
-                fontSize: '12px',
-                '&:hover': {
-                  color: 'secondary.main',
-                },
-              }}
-            >
-              プライバシーポリシー
-            </Link>
-            <Link
-              component="button"
-              variant="body2"
-              onClick={() => handleLinkClick('#terms')}
-              sx={{
-                color: 'text.secondary',
-                textDecoration: 'none',
-                fontSize: '12px',
-                '&:hover': {
-                  color: 'secondary.main',
-                },
-              }}
-            >
-              利用規約
-            </Link>
-          </Box>
-        </Box>
-      </Container>
-    </Box>
+        {/* Scroll to Top Button */}
+        <div className="text-center mt-8">
+          <button
+            onClick={scrollToTop}
+            className="bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full transition-colors duration-300 inline-flex items-center justify-center"
+            aria-label="ページ上部に戻る"
+          >
+            <ArrowUp className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Copyright */}
+        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
+          <p className="text-gray-400 text-sm">
+            © 2025 DOTSサッカーパーソナル. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 }
