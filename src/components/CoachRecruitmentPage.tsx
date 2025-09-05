@@ -16,7 +16,7 @@ export function CoachRecruitmentPage() {
       icon: Award,
       title: "応募資格",
       content: "18歳以上",
-      subtitle: "実績・資格は問いません"
+      subtitle: "研修制度あり"
     },
     {
       icon: MapPin,
@@ -36,7 +36,7 @@ export function CoachRecruitmentPage() {
     "18歳以上",
     "子どもが好きで、サッカーを心から楽しめる方",
     "本気でコーチとして挑戦したい方",
-    "実績・資格は問いません（研修制度あ���）"
+    "実績・資格は問いません（研修制度あり）"
   ];
 
   const workContent = [
@@ -46,7 +46,7 @@ export function CoachRecruitmentPage() {
   ];
 
   const compensation = {
-    hourlyWage: "2,000円 ～ 8,400円",
+    hourlyWage: "1,500円 ～ 6,400円",
     benefits: [
       "レッスン生の人数や成績に応じて昇給あり",
       "交通費支給"
@@ -94,7 +94,7 @@ export function CoachRecruitmentPage() {
 
   const selectionProcess = [
     { step: "書類選考", description: "履歴書・エントリーシート審査" },
-    { step: "1次・2次面接", description: "オンライン可" },
+    { step: "面接", description: "オンライン可" },
     { step: "実技テスト", description: "免除あり" },
     { step: "正式採用", description: "契約締結" }
   ];
@@ -127,7 +127,7 @@ export function CoachRecruitmentPage() {
               DOTSと一緒に<span className="font-semibold text-black">次世代の選手</span>を育成しませんか？
             </p>
             <p className="text-lg text-gray-600">
-              未経験でも大丈夫！充実した研修制度でサポートします。
+              サッカー経験者を歓迎！充実した研修制度でサポートします。
             </p>
           </div>
         </div>
