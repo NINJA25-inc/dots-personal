@@ -42,16 +42,15 @@ export function CoachSection() {
         "エンジニアとしてアプリ開発・ITコンサル・AI推進を経験",
         "AIソリューション開発に従事",
         "4社での経験を経て、株式会社NINJAを設立",
-        "サッカー経験あり、テクノロジーとスポーツの融合を目指す",
-        "AWS・Microsoft複数資格保持"
+        "サッカー経験あり、テクノロジーとスポーツの融合を目指す"
       ],
       achievements: [
-        "IT・AI推進コンサルタント",
-        "アプリ開発"
+        "クラウドファンディング系サービス開発",
+        "エンジンのアプリ開発"
       ],
       philosophy: "選手、保護者、コーチの三者が信頼関係を築き、共に成長できる環境作りを大切にしています。",
       message: "テクノロジーとサッカーの融合により、新しい育成の形を創造していきます。",
-      respect: "小学校のサッカーチームのコーチ",
+      respect: "同業者の仲間たち",
       favoritePlayer: "クリスティアーノ・ロナウド",
       isActive: true
     }
@@ -159,7 +158,7 @@ export function CoachSection() {
                     {/* Personal Info */}
                     <div className="grid grid-cols-1 gap-3 mb-4">
                       <div>
-                        <h5 className="font-medium text-[#0f172a] mb-1 text-sm">尊敬する人</h5>
+                        <h5 className="font-medium text-[#0f172a] mb-1 text-sm">尊敬する指導者</h5>
                         <p className="text-xs text-[#64748b]">{coach.respect}</p>
                       </div>
                       <div>
