@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# サイトマップの場所
+Sitemap: https://dots-personal.vercel.app/sitemap.xml
+
+# クロール頻度の調整
+Crawl-delay: 1
+
+# 特定のボットに対する設定
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# 不要なファイルのクロールを防ぐ
+Disallow: /src/
+Disallow: /*.json$
+Disallow: /*.ts$
+Disallow: /*.tsx$ 
