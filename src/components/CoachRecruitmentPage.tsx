@@ -67,27 +67,9 @@ export function CoachRecruitmentPage() {
       coverage: "30%〜100%"
     },
     {
-      icon: Trophy,
-      title: "サッカー試合チケット",
-      description: "プロサッカー観戦チケット提供",
-      coverage: "30%〜100%"
-    },
-    {
       icon: BookOpen,
       title: "資格取得支援",
       description: "指導者資格取得費用サポート",
-      coverage: "30%〜100%"
-    },
-    {
-      icon: Star,
-      title: "動画配信サービス",
-      description: "サッカー系動画配信サブスク",
-      coverage: "30%〜100%"
-    },
-    {
-      icon: Target,
-      title: "スポーツ用品支給",
-      description: "シューズ・ウェアの支給",
       coverage: "30%〜100%"
     }
   ];

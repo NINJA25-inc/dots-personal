@@ -1,17 +1,17 @@
-import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Check, Star, CreditCard, Banknote, Crown } from 'lucide-react';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export function PricingSection() {
   const mainPlans = [
     {
       name: "初回体験",
-      price: "1,500",
+      price: "2,000",
       duration: "60分",
-      perSession: "1,500",
-      badge: "毎月10名限定",
+      perSession: "2,000",
+      badge: "毎月5名限定",
       badgeColor: "bg-red-500",
       description: "まずは体験レッスンでDOTSメソッドを実感してください",
       features: [
@@ -418,7 +418,7 @@ export function PricingSection() {
           <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">
             お支払い方法
           </h3>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Banknote className="w-8 h-8 text-white" />
@@ -430,15 +430,26 @@ export function PricingSection() {
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <CreditCard className="w-8 h-8 text-white" />
               </div>
-              <h4 className="font-bold text-gray-900 mb-2">口座振込</h4>
+              <h4 className="font-bold text-gray-900 mb-2">銀行振込</h4>
               <p className="text-sm text-gray-600">事前に指定口座へお振込み</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <CreditCard className="w-8 h-8 text-white" />
+              </div>
+              <h4 className="font-bold text-gray-900 mb-2">クレジットカード決済</h4>
+              <p className="text-sm text-gray-600 mb-4">PayPal経由でのお支払い</p>
+              
+              <p className="text-xs text-gray-500 mt-2">
+                対応ブランド：VISA / MC / JCB / AMEX
+              </p>
             </div>
           </div>
           <div className="mt-8 p-6 bg-yellow-50 rounded-xl border border-yellow-200">
             <p className="text-sm text-gray-700 text-center space-y-2">
               <span className="block font-semibold text-yellow-800">※ 料金は税込みです。</span>
               <span className="block">別途交通費（実費）を頂戴します。</span>
-              <span className="block">お支払い方法は現金または口座振込</span>
+              <span className="block">お支払い方法は現金・銀行振込・クレジットカード決済から選択可能</span>
             </p>
           </div>
         </div>
