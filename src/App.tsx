@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
@@ -20,7 +19,7 @@ import { CoachRecruitmentPage } from './components/CoachRecruitmentPage';
 // Home page component
 function HomePage() {
   return (
-    <main role="main" aria-label="メインコンテンツ">
+    <>
       <HeroSection />
       <AboutSection />
       <MethodSection />
@@ -29,33 +28,32 @@ function HomePage() {
       <CoachSection />
       <FAQSection />
       <ContactFormSection />
-    </main>
+    </>
   );
 }
 
 // Sponsor page component
 function SponsorPage() {
   return (
-    <main role="main" aria-label="スポンサー提携先募集ページ" className="pt-16">
+    <div className="pt-16">
       {/* Page content with top padding to account for fixed header */}
-      <article className="py-20">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back to Home button */}
-          <nav className="mb-8" aria-label="ページナビゲーション">
+          <div className="mb-8">
             <button 
               onClick={() => window.history.back()}
               className="inline-flex items-center text-black hover:text-gray-600 transition-colors duration-300"
-              aria-label="前のページに戻る"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
               ホームに戻る
             </button>
-          </nav>
+          </div>
           
           {/* Page Header */}
-          <header className="text-center mb-20">
+          <div className="text-center mb-20">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-black mb-6">
               スポンサー提携先募集
             </h1>
@@ -66,12 +64,12 @@ function SponsorPage() {
                 パートナー企業様を募集しています。
               </p>
             </div>
-          </header>
+          </div>
 
           {/* Mission Statement */}
-          <section className="bg-gray-50 border border-gray-200 rounded-lg p-8 lg:p-12 mb-20" aria-labelledby="mission-heading">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 lg:p-12 mb-20">
             <div className="text-center mb-8">
-              <h2 id="mission-heading" className="text-2xl sm:text-3xl font-semibold text-black mb-6">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-black mb-6">
                 私たちのミッション
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -79,14 +77,14 @@ function SponsorPage() {
                 技術面だけでなく人間性も育む次世代のサッカー教育を提供しています。
               </p>
             </div>
-          </section>
+          </div>
 
           {/* Partnership Benefits */}
-          <section className="mb-20" aria-labelledby="benefits-heading">
-            <h2 id="benefits-heading" className="text-2xl sm:text-3xl font-semibold text-black mb-12 text-center">
+          <div className="mb-20">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-black mb-12 text-center">
               スポンサー提携のメリット
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
                   title: "ブランド認知度向上",
@@ -113,36 +111,35 @@ function SponsorPage() {
                   description: "一時的な広告出稿とは異なり、持続的なブランド露出と長期的な関係構築が可能です。"
                 }
               ].map((benefit, index) => (
-                <article key={index} className="border border-gray-200 hover:border-black transition-all duration-300 bg-white rounded-lg p-6" role="listitem">
+                <div key={index} className="border border-gray-200 hover:border-black transition-all duration-300 bg-white rounded-lg p-6">
                   <h3 className="text-lg font-semibold text-black mb-4">
                     {benefit.title}
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
                     {benefit.description}
                   </p>
-                </article>
+                </div>
               ))}
             </div>
-          </section>
+          </div>
 
           {/* Contact Section */}
-          <section className="text-center" aria-labelledby="contact-heading">
-            <h2 id="contact-heading" className="sr-only">お問い合わせ</h2>
+          <div className="text-center">
             <p className="text-lg text-gray-600 mb-4">
               スポンサー提携についてのお問い合わせ
             </p>
             <a 
               href="mailto:info.dots.personal@gmail.com"
               className="text-black hover:text-gray-600 transition-colors duration-300 underline"
-              aria-label="スポンサー提携についてメールでお問い合わせ"
             >
               info.dots.personal@gmail.com
             </a>
-          </section>
+          </div>
+
 
         </div>
-      </article>
-    </main>
+      </section>
+    </div>
   );
 }
 
@@ -151,18 +148,21 @@ export default function App() {
     <Router>
       <div className="min-h-screen bg-white">
         <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/sponsor" element={<SponsorPage />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-          <Route path="/commercial-transaction" element={<CommercialTransactionPage />} />
-          <Route path="/company-info" element={<CompanyInfoPage />} />
-          <Route path="/coach-recruitment" element={<CoachRecruitmentPage />} />
-          {/* Handle preview page and other unmatched routes */}
-          <Route path="/preview_page.html" element={<Navigate to="/" replace />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/sponsor" element={<SponsorPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+
+            <Route path="/commercial-transaction" element={<CommercialTransactionPage />} />
+            <Route path="/company-info" element={<CompanyInfoPage />} />
+            <Route path="/coach-recruitment" element={<CoachRecruitmentPage />} />
+            {/* Handle preview page and other unmatched routes */}
+            <Route path="/preview_page.html" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
         <Footer />
       </div>
     </Router>
