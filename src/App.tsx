@@ -15,6 +15,7 @@ import { TermsOfServicePage } from './components/TermsOfServicePage';
 import { CommercialTransactionPage } from './components/CommercialTransactionPage';
 import { CompanyInfoPage } from './components/CompanyInfoPage';
 import { CoachRecruitmentPage } from './components/CoachRecruitmentPage';
+import { TotalSupportPlanPage } from './components/TotalSupportPlanPage';
 
 // Home page component
 function HomePage() {
@@ -158,6 +159,7 @@ export default function App() {
             <Route path="/commercial-transaction" element={<CommercialTransactionPage />} />
             <Route path="/company-info" element={<CompanyInfoPage />} />
             <Route path="/coach-recruitment" element={<CoachRecruitmentPage />} />
+            <Route path="/total-support-plan" element={<TotalSupportPlanPage />} />
             {/* Handle preview page and other unmatched routes */}
             <Route path="/preview_page.html" element={<Navigate to="/" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />

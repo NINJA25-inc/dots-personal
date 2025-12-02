@@ -44,10 +44,10 @@ export function HeroSection() {
               <div className="text-center space-y-3">
                 <div className="space-y-1">
                   <p className="text-xl sm:text-2xl font-bold text-gray-900">
-                    初回体験 60分 2,000円
+                    冬限定 無料体験レッスン実施
                   </p>
                   <p className="text-base font-medium text-gray-900">
-                    （毎月5名限定）
+                    （先着20名限定）
                   </p>
                 </div>
                 
