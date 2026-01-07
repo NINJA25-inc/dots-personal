@@ -182,15 +182,6 @@ export function LessonFlowSection() {
           </Button>
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-12">
-          <Button 
-            onClick={() => scrollToSection('pricing')}
-            className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-          >
-            料金プランを見る
-          </Button>
-        </div>
       </div>
     </section>
   );
