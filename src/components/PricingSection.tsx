@@ -6,15 +6,17 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useNavigate } from 'react-router-dom';
 
 export function PricingSection() {
+  const navigate = useNavigate();
+
   const mainPlans = [
     {
       name: "初回体験",
-      price: "0",
+      price: "2,000",
       duration: "60分",
-      perSession: "0",
-      badge: "冬限定 先着20名",
+      perSession: "2,000",
+      badge: "初回限定",
       badgeColor: "bg-red-500",
-      description: "まずは無料体験レッスンでDOTSメソッドを実感してください",
+      description: "まずは体験レッスンでDOTSメソッドを実感してください",
       features: [
         "個別カウンセリング",
         "マンツーマン指導",
@@ -142,8 +144,6 @@ export function PricingSection() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const navigate = useNavigate();
 
   return (
     <section id="pricing" className="py-20 bg-gradient-to-br from-white via-gray-50/30 to-blue-50/20">

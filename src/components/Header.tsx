@@ -21,7 +21,7 @@ export function Header() {
   const menuItems = [
     { name: 'DOTSとは', id: 'about', type: 'scroll' },
     { name: 'メソッド', id: 'method', type: 'scroll' },
-    { name: '料金プラン', id: 'pricing', type: 'scroll' },
+    { name: '料金プラン', id: 'pricing', type: 'route', path: '/pricing' },
     { name: 'コーチスタッフ紹介', id: 'coaches', type: 'scroll' },
     { name: 'よくある質問', id: 'faq', type: 'scroll' },
     { name: 'コーチ求人', id: 'coach-recruitment', type: 'route', path: '/coach-recruitment' },

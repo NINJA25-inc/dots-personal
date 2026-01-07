@@ -42,12 +42,12 @@ export function HeroSection() {
             <div className="space-y-6 mt-8">
               {/* Price Information */}
               <div className="text-center space-y-3">
-                <div className="space-y-1">
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900">
-                    冬限定 無料体験レッスン実施
+                <div className="flex items-center justify-center gap-2">
+                  <p className="text-base sm:text-lg font-semibold text-gray-900">
+                    初回体験レッスン
                   </p>
-                  <p className="text-base font-medium text-gray-900">
-                    （先着20名限定）
+                  <p className="text-base sm:text-lg font-semibold text-gray-900">
+                    ¥2,000
                   </p>
                 </div>
                 

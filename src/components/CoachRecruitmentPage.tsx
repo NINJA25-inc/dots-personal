@@ -53,31 +53,11 @@ export function CoachRecruitmentPage() {
     ]
   };
 
-  const performanceSupports = [
-    {
-      icon: Activity,
-      title: "ジム利用",
-      description: "フィットネス施設の利用サポート",
-      coverage: "30%〜100%"
-    },
-    {
-      icon: Heart,
-      title: "サウナ利用",
-      description: "リラクゼーション施設の利用サポート",
-      coverage: "30%〜100%"
-    },
-    {
-      icon: BookOpen,
-      title: "資格取得支援",
-      description: "指導者資格取得費用サポート",
-      coverage: "30%〜100%"
-    }
-  ];
-
   const selectionProcess = [
     { step: "書類選考", description: "履歴書・エントリーシート審査" },
-    { step: "面接", description: "オンライン可" },
+    { step: "1次面接", description: "オンライン可" },
     { step: "実技テスト", description: "免除あり" },
+    { step: "2次面接", description: "最終面接" },
     { step: "正式採用", description: "契約締結" }
   ];
 
@@ -205,42 +185,6 @@ export function CoachRecruitmentPage() {
 
           {/* Right Column */}
           <div className="space-y-8">
-            {/* Performance Support */}
-            <Card className="border border-gray-200 shadow-sm bg-white">
-              <CardHeader>
-                <CardTitle className="flex items-center text-black">
-                  <Star className="w-5 h-5 mr-2 text-black" />
-                  パフォーマンスサポート
-                </CardTitle>
-                <p className="text-sm text-gray-600 mt-2">
-                  レッスン実績や成績に応じて、以下のサポート制度があります
-                </p>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-3">
-                  {performanceSupports.map((support, index) => (
-                    <div key={index} className="flex items-start">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between">
-                          <span className="text-gray-700 text-sm font-medium">{support.title}</span>
-                          <Badge variant="outline" className="border-gray-400 text-gray-600 text-xs">{support.coverage}</Badge>
-                        </div>
-                        <p className="text-xs text-gray-500 mt-1 leading-relaxed">{support.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
-                  <p className="text-sm text-gray-700 text-center">
-                    <span className="font-semibold text-black">30%～最大100%</span>を会社が負担
-                    <br />
-                    <span className="text-xs text-gray-500">詳細は面接時に説明</span>
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
             {/* Selection Process */}
             <Card className="border border-gray-200 shadow-sm bg-white">
               <CardHeader>

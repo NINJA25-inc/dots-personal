@@ -4,7 +4,6 @@ import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
 import { MethodSection } from './components/MethodSection';
 import { LessonFlowSection } from './components/LessonFlowSection';
-import { PricingSection } from './components/PricingSection';
 import { CoachSection } from './components/CoachSection';
 import { FAQSection } from './components/FAQSection';
 import { ContactFormSection } from './components/ContactFormSection';
@@ -16,6 +15,8 @@ import { CommercialTransactionPage } from './components/CommercialTransactionPag
 import { CompanyInfoPage } from './components/CompanyInfoPage';
 import { CoachRecruitmentPage } from './components/CoachRecruitmentPage';
 import { TotalSupportPlanPage } from './components/TotalSupportPlanPage';
+import { PricingPage } from './components/PricingPage';
+import { HareyamaPlanPage } from './components/HareyamaPlanPage';
 
 // Home page component
 function HomePage() {
@@ -25,7 +26,6 @@ function HomePage() {
       <AboutSection />
       <MethodSection />
       <LessonFlowSection />
-      <PricingSection />
       <CoachSection />
       <FAQSection />
       <ContactFormSection />
@@ -160,6 +160,8 @@ export default function App() {
             <Route path="/company-info" element={<CompanyInfoPage />} />
             <Route path="/coach-recruitment" element={<CoachRecruitmentPage />} />
             <Route path="/total-support-plan" element={<TotalSupportPlanPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/hareyama-plan" element={<HareyamaPlanPage />} />
             {/* Handle preview page and other unmatched routes */}
             <Route path="/preview_page.html" element={<Navigate to="/" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
