@@ -473,58 +473,6 @@ export function PricingSection() {
           </div>
         </div>
 
-        {/* 特待生制度セクション */}
-        <div className="max-w-xl mx-auto mt-12">
-          <div className="bg-white rounded-xl p-8 shadow-lg ring-1 ring-slate-200">
-            <div className="text-center mb-6">
-              <div className="flex justify-center mb-3">
-                <Badge className="bg-slate-600 text-white px-3 py-1 text-xs">
-                  <Crown className="w-3 h-3 mr-1" />
-                  特別制度
-                </Badge>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                特待生制度
-              </h3>
-              <p className="text-sm text-gray-600 mb-6">
-                子どもたちの将来を応援する制度です。
-              </p>
-            </div>
-
-            <div className="text-center mb-6">
-              <h4 className="text-sm font-semibold text-gray-700 mb-3">対象選手（目安）</h4>
-              <div className="grid grid-cols-2 gap-2 max-w-xs mx-auto mb-6">
-                <div className="text-xs text-gray-600 bg-slate-50 rounded-lg py-2 px-3">
-                  地域トレセン選出者
-                </div>
-                <div className="text-xs text-gray-600 bg-slate-50 rounded-lg py-2 px-3">
-                  都県選抜選出者
-                </div>
-                <div className="text-xs text-gray-600 bg-slate-50 rounded-lg py-2 px-3">
-                  関東大会出場者
-                </div>
-                <div className="text-xs text-gray-600 bg-slate-50 rounded-lg py-2 px-3">
-                  全国大会出場者
-                </div>
-              </div>
-            </div>
-            
-            <div className="text-center">
-              <p className="text-sm text-gray-600 mb-4">
-                詳細はお問い合わせいただければご案内いたします。
-              </p>
-
-              <Button 
-                onClick={() => scrollToSection('contact')}
-                className="bg-slate-600 hover:bg-slate-700 text-white px-6 py-3 text-sm rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
-              >
-                <Crown className="w-4 h-4 mr-2" />
-                お問い合わせ
-              </Button>
-            </div>
-          </div>
-        </div>
-
         {/* Payment Methods */}
         <div className="bg-white rounded-2xl p-8 shadow-xl mt-12">
           <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">

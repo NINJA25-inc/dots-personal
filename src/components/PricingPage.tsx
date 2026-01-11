@@ -45,7 +45,8 @@ export function PricingPage() {
       ],
       popular: true,
       buttonText: "回数券プランを選ぶ",
-      buttonColor: "bg-gradient-to-r from-blue-500 via-cyan-500 to-green-500 hover:from-blue-600 hover:via-cyan-600 hover:to-green-600"
+      buttonColor: "bg-gradient-to-r from-blue-500 via-cyan-500 to-green-500 hover:from-blue-600 hover:via-cyan-600 hover:to-green-600",
+      scrollTo: "ticket-details"
     },
     {
       name: "月額プラン",
@@ -66,7 +67,8 @@ export function PricingPage() {
       ],
       popular: false,
       buttonText: "月額プランを選ぶ",
-      buttonColor: "bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 hover:from-green-600 hover:via-emerald-600 hover:to-teal-600"
+      buttonColor: "bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 hover:from-green-600 hover:via-emerald-600 hover:to-teal-600",
+      scrollTo: "monthly-details"
     }
   ];
 
@@ -197,7 +199,16 @@ export function PricingPage() {
                     ))}
                   </ul>
                   <Button 
-                    onClick={() => window.open('https://forms.gle/b8P2LMDL2x5fJp4p7', '_blank')}
+                    onClick={() => {
+                      if (plan.name === "初回体験") {
+                        window.open('https://forms.gle/b8P2LMDL2x5fJp4p7', '_blank');
+                      } else if (plan.scrollTo) {
+                        const element = document.getElementById(plan.scrollTo);
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }
+                    }}
                     className={`w-full ${plan.buttonColor} text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:-translate-y-1`}
                   >
                     {plan.popular && (
@@ -211,7 +222,7 @@ export function PricingPage() {
           </div>
 
           {/* Ticket Plans Detailed Table */}
-          <div className="mb-16">
+          <div className="mb-16" id="ticket-details">
             <h3 className="text-2xl font-bold text-[#0f172a] mb-8 text-center">
               回数券プラン詳細
             </h3>
@@ -260,7 +271,7 @@ export function PricingPage() {
           </div>
 
           {/* Monthly Plans Detailed Table */}
-          <div className="mb-16">
+          <div className="mb-16" id="monthly-details">
             <h3 className="text-2xl font-bold text-[#0f172a] mb-8 text-center">
               月額プラン詳細
             </h3>

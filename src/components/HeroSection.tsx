@@ -20,10 +20,10 @@ export function HeroSection() {
           <div className="flex flex-col justify-center space-y-8 lg:pr-8">
             {/* Main Heading */}
             <div className="space-y-6">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium text-black leading-none tracking-tight">
-                <span className="font-medium">DOTS</span><br />
-                <span className="font-medium">君だけの成長を、</span><br />
-                <span className="font-medium">デザインする</span>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-black leading-tight tracking-tight">
+                <span className="block mb-1 whitespace-nowrap">DOTSパーソナル</span>
+                <span className="block mb-1 italic whitespace-nowrap">圧倒的に寄り添い、</span>
+                <span className="block italic whitespace-nowrap">徹底的に質にこだわる。</span>
               </h1>
 
               {/* Subtitle with blue to red gradient */}
@@ -101,10 +101,12 @@ export function HeroSection() {
               </div>
               <div className="text-center group">
                 <div className="text-xl lg:text-2xl font-bold text-black mb-2 group-hover:scale-110 transition-transform duration-300">
-                  募集エリア
+                  募集地域
                 </div>
-                <div className="text-xs sm:text-sm text-gray-600">現在募集中</div>
-                <div className="text-xs text-gray-500 mt-1">東京・神奈川・埼玉・千葉</div>
+                <div className="text-xs sm:text-sm text-gray-600">
+                  <div>東京・神奈川</div>
+                  <div>埼玉・千葉</div>
+                </div>
               </div>
               <div className="text-center group">
                 <div className="text-xl lg:text-2xl font-bold text-black mb-2 group-hover:scale-110 transition-transform duration-300">

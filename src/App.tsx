@@ -17,6 +17,7 @@ import { CoachRecruitmentPage } from './components/CoachRecruitmentPage';
 import { TotalSupportPlanPage } from './components/TotalSupportPlanPage';
 import { PricingPage } from './components/PricingPage';
 import { HareyamaPlanPage } from './components/HareyamaPlanPage';
+import { ScholarshipPage } from './components/ScholarshipPage';
 
 // Home page component
 function HomePage() {
@@ -162,6 +163,7 @@ export default function App() {
             <Route path="/total-support-plan" element={<TotalSupportPlanPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/hareyama-plan" element={<HareyamaPlanPage />} />
+            <Route path="/scholarship" element={<ScholarshipPage />} />
             {/* Handle preview page and other unmatched routes */}
             <Route path="/preview_page.html" element={<Navigate to="/" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
