@@ -18,6 +18,7 @@ import { TotalSupportPlanPage } from './components/TotalSupportPlanPage';
 import { PricingPage } from './components/PricingPage';
 import { HareyamaPlanPage } from './components/HareyamaPlanPage';
 import { ScholarshipPage } from './components/ScholarshipPage';
+import { SpecialLandingPage } from './components/SpecialLandingPage';
 
 // Home page component
 function HomePage() {
@@ -164,6 +165,7 @@ export default function App() {
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/hareyama-plan" element={<HareyamaPlanPage />} />
             <Route path="/scholarship" element={<ScholarshipPage />} />
+            <Route path="/special-landing" element={<SpecialLandingPage />} />
             {/* Handle preview page and other unmatched routes */}
             <Route path="/preview_page.html" element={<Navigate to="/" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
